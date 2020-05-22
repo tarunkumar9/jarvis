@@ -1,0 +1,94 @@
+
+
+
+<!doctype html>
+<html>
+    <head>
+        <style type="text/css">
+            .header{
+                text-align: center;
+                background-color: rgb(136, 185, 229);
+                height: 70px;
+                line-height: 70px;
+            }
+            .chart{
+                margin-top: 30px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+<body>
+
+ 
+ 
+ 
+    <div id="chart0" class="chart0">
+    </div>  
+    <div id="chart1" class="chart1">
+    </div> 
+    <div id="chart2" class="chart2">
+    </div>  
+    <div id="chart3" class="chart3">
+    </div>  
+    <div id="chart4" class="chart4">
+    </div>  
+    <div id="chart5" class="chart5">
+    </div>  
+    <div id="chart6" class="chart6">
+    </div>   
+   <!-- <img src="{{ url_for('static', filename="images/"+myCompanyName+"predict"+".png") }}" alt="Predict" width="500" height="333">
+   -->
+</body>
+
+{% block content %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+        
+    var graphs0,graphs1,graphs2,graphs3,graphs4,graphs5,graphs6;
+    var layout0,layout1,layout2,layout3,layout4,layout5,layout6;
+
+    graphs0 = {{graphJSON0 | safe}};
+    graphs1 = {{graphJSON1 | safe}};
+    graphs2 = {{graphJSON2 | safe}};
+    graphs3 = {{graphJSON3 | safe}};
+    graphs4 = {{graphJSON4 | safe}};
+    graphs5 = {{graphJSON5 | safe}};
+    graphs6 = {{graphJSON6 | safe}};
+
+    layout0 = {title: 'Stock Market CandleStick Chart',xaxis: {title: 'Dates',showgrid: false,zeroline: false},
+                yaxis: {title: 'Amount',showline: false}};
+    layout1 = {title: 'Stock Market vs Dividends',xaxis: {title: 'Dates',showgrid: false,zeroline: false},
+                yaxis: {title: 'Amount',showline: false}};
+    layout2 = {title: 'Stock Market vs AGMs/EGMs',xaxis: {title: 'Dates',showgrid: false,zeroline: false},
+                yaxis: {title: 'Amount',showline: false}};
+    layout3 = {title: 'Stock Market vs Board Meetings',xaxis: {title: 'Dates',showgrid: false,zeroline: false},
+                yaxis: {title: 'Amount',showline: false}};
+    layout4 = {title: 'Stock Market vs Bonus',xaxis: {title: 'Dates',showgrid: false,zeroline: false},
+                yaxis: {title: 'Amount',showline: false}};
+    layout5 = {title: 'Stock Market vs Rights',xaxis: {title: 'Dates',showgrid: false,zeroline: false},
+                yaxis: {title: 'Amount',showline: false}};
+    layout6 = {title: 'Stock Market vs Splits',xaxis: {title: 'Dates',showgrid: false,zeroline: false},
+                yaxis: {title: 'Amount',showline: false}};
+
+    chart0 = document.getElementById('chart0');
+    chart1 = document.getElementById('chart1');
+    chart2 = document.getElementById('chart2');
+    chart3 = document.getElementById('chart3');
+    chart4 = document.getElementById('chart4');
+    chart5 = document.getElementById('chart5');
+    chart6 = document.getElementById('chart6');
+
+	Plotly.newPlot( chart0,graphs0, layout0 );    
+    Plotly.newPlot( chart1,graphs1, layout1 );
+    Plotly.newPlot( chart2,graphs2, layout2 );
+    Plotly.newPlot( chart3,graphs3, layout3 );
+    Plotly.newPlot( chart4,graphs4, layout4 );
+    Plotly.newPlot( chart5,graphs5, layout5 );
+    Plotly.newPlot( chart6,graphs6, layout6 );
+    </script>
+
+</html>
+{% endblock %} 

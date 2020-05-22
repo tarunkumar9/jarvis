@@ -1,0 +1,93 @@
+{% extends "material/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<title>Jarvis Scraped</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Odibee+Sans&family=Raleway&family=Turret+Road:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  .w3-bar {
+  width: 100%;
+  height: 60px;
+  padding: 15px;
+  box-shadow: 0px 10px 5px grey;
+}
+.button1{
+  font-family: 'Raleway', sans-serif;
+  color: #4D4C4C;
+  padding: 2px;
+}
+.button1:hover{color:rgba(255,255,255,.75)}
+.button1:active{color:#fff}
+</style>
+<body>
+
+  
+ 
+<div class="w3-bar w3-white w3-center" style="position:fixed;">
+
+
+  <button class="w3-bar-item w3-button button1 w3-text-black" style="width: 15%;" onclick="openCity('UpcomingDividends')">Dividends</button>
+  <button class="w3-bar-item w3-button button1 w3-text-black" style="width: 15%;" onclick="openCity('UpcomingRights')">Rights</button>
+  <button class="w3-bar-item w3-button button1 w3-text-black" style="width: 15%;" onclick="openCity('UpcomingSplits')">Splits</button>
+  <button class="w3-bar-item w3-button button1 w3-text-black" style="width: 15%;" onclick="openCity('UpcomingBonus')">Bonus</button>
+  <button class="w3-bar-item w3-button button1 w3-text-black" style="width: 15%;" onclick="openCity('UpcomingBoardmeetings')"> Boardmeetings</button>
+  <button class="w3-bar-item w3-button button1 w3-text-black" style="width: 20%;" onclick="openCity('UpcomingAEB')"> Agm EGM Book Closure</button>
+  
+</div>
+<br><br><br>
+<div id="UpcomingDividends" class="w3-container city">
+    {{ dfUpcomingDividends.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+           
+    </div>
+    
+    <div id="UpcomingRights" class="w3-container city" style="display:none">
+      {{ dfUpcomingrights.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+      
+    </div>
+    
+    <div id="UpcomingSplits" class="w3-container city" style="display:none">
+       {{ dfUpcomingSplits.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+      
+    </div>
+    
+    <div id="UpcomingBonus" class="w3-container city" style="display:none">
+       {{ dfUpcomingBonus.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+    
+    </div>
+    
+    <div id="UpcomingBoardmeetings" class="w3-container city" style="display:none">
+      {{ dfUpcomingBordMeetings.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+   
+    </div>
+    
+    <div id="UpcomingAEB" class="w3-container city" style="display:none">
+        {{ dfUpcomingAGM.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+      
+    </div>
+    
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript">
+
+function openCity(cityName) {
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(cityName).style.display = "block";  
+}
+
+
+</script>
+
+</body>
+</html>
+{% endblock %}

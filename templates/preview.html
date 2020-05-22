@@ -1,0 +1,250 @@
+{% extends "material/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.button1 {
+    transition: all .5s ease;
+    color: #fff;
+    border: 3px solid white;
+    font-family:'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 13px;
+    background-color : transparent;
+    outline: none;
+    border-radius: 5px;
+}
+.button1:hover {
+    color:white;
+    background-color: #519295;
+	border: 3px solid #519295;
+}
+  
+</style>
+<body>
+
+<div class="w3-sidebar w3-bar-block w3-black w3-card" style="width:130px">
+  <h5 class="w3-bar-item">Menu</h5>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Dividends')">Dividends</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Rights')">Rights</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Splits')">Splits</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Bonus')">Bonus</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'BoardMeetings')">Board Meetings</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'AGMEGMBookClosure')">AGM EGM Book Closure</button>
+  <a href="{{ url_for('stockanalysis') }}" class=" button1 " style="display:inline-block;padding: 10px;">View Graphs</a>
+</div>
+
+<div style="margin-left:130px;margin-top:5px">
+
+<div id="Dividends" class="w3-container city w3-animate-left" style="display: block;">
+<div class="w3-bar w3-black w3-center" style="position: fixed; width: 87%;">
+<button class="w3-bar-item w3-button w3-left" onclick="openAction('MCDiv')" >Moneycontrol</button>
+<button class="w3-bar-item w3-button w3-right" onclick="openAction('BSDiv')" >BusinessStandard</button>
+</div>
+<br>
+<br>
+<div class="w3-bar w3-black w3-center" style="position: fixed; width: 87%;margin-top: -7px;">
+<p class = "w3-left"><span style="color:white">  Corporate Actions Of</span> <b>{{ myCompany }}</b></p>
+</div>
+<br>
+<br>
+<div id="MCDiv" class="w3-container action">
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file1') }}">Download MC csv</a>
+  </p>
+{{ df_view_dividends.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+<div id="BSDiv" class="w3-container action" style="display: none;"> 
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file2') }}">Download BS csv</a>
+  </p>
+{{ df_view_dividends2.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+</div>
+
+
+
+<div id="Rights" class="w3-container city w3-animate-left" style="display: block;" >
+<div class="w3-bar w3-black w3-center" style="position: fixed;width: 87%" >
+<button class="w3-bar-item w3-button w3-left" onclick="openAction('MCRig')" >Moneycontrol</button>
+<button class="w3-bar-item w3-button w3-right" onclick="openAction('BSRig')" >BusinessStandard</button>
+</div>
+<br>
+<br>
+<div class="w3-bar w3-black w3-center" style="position: fixed; width: 87%;margin-top: -7px;">
+  <p class = "w3-left"><span style="color:white">  Corporate Actions Of</span> <b>{{ myCompany }}</b></p>
+  </div>
+  <br>
+<br>
+<div id="MCRig" class="w3-container action" >
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file3') }}">Download MC csv</a>
+  </p>
+{{ df_view_rights.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+<div id="BSRig" class="w3-container action"  style="display: none;">
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file4') }}">Download BS csv</a>
+  </p>
+{{ df_view_rights2.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+</div>
+
+
+
+
+<div id="Splits" class="w3-container city w3-animate-left" >
+<div class="w3-bar w3-black w3-center" style="position: fixed;width: 87%">
+<button class="w3-bar-item w3-button w3-left" onclick="openAction('MCSpli')" >Moneycontrol</button>
+<button class="w3-bar-item w3-button w3-right" onclick="openAction('BSSpli')" >BusinessStandard</button>
+</div>
+<br>
+<br>
+<div class="w3-bar w3-black w3-center" style="position: fixed; width: 87%;margin-top: -7px;">
+  <p class = "w3-left"><span style="color:white">  Corporate Actions Of</span> <b>{{ myCompany }}</b></p>
+  </div>
+  <br>
+<br>
+<div id="MCSpli" class="w3-container action" >
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file5') }}">Download MC csv</a>
+  </p>
+{{ df_view_splits.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+<div id="BSSpli" class="w3-container action" style="display: none;">
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file6') }}">Download BS csv</a>
+  </p>
+{{ df_view_splits2.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+</div>
+
+
+
+
+<div id="Bonus" class="w3-container city w3-animate-left" style="display: block;" >
+<div class="w3-bar w3-black w3-center" style="position: fixed;width: 87%">
+<button class="w3-bar-item w3-button w3-left" onclick="openAction('MCBon')" >Moneycontrol</button>
+<button class="w3-bar-item w3-button w3-right" onclick="openAction('BSBon')" >BusinessStandard</button>
+</div>
+<br>
+<br>
+<div class="w3-bar w3-black w3-center" style="position: fixed; width: 87%;margin-top: -7px;">
+  <p class = "w3-left"><span style="color:white">  Corporate Actions Of</span> <b>{{ myCompany }}</b></p>
+  </div>
+  <br>
+<br>
+<div id="MCBon" class="w3-container action" >
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file7') }}">Download MC csv</a>
+  </p>
+{{ df_view_bonus.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+<div id="BSBon" class="w3-container action"  style="display: none;"  >
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file8') }}">Download BS csv</a>
+  </p>
+{{ df_view_bonus2.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+</div>
+
+
+
+
+<div id="BoardMeetings" class="w3-container city w3-animate-left" >
+<div class="w3-bar w3-black w3-center" style="position: fixed;width: 87%">
+<button class="w3-bar-item w3-button w3-left" onclick="openAction('MCBM')" >Moneycontrol</button>
+<button class="w3-bar-item w3-button w3-right" onclick="openAction('BSBM')" >BusinessStandard</button>
+</div>
+<br>
+<br>
+<div class="w3-bar w3-black w3-center" style="position: fixed; width: 87%;margin-top: -7px;">
+  <p class = "w3-left"><span style="color:white">  Corporate Actions Of</span> <b>{{ myCompany }}</b></p>
+  </div>
+  <br>
+<br>
+<div id="MCBM" class="w3-container action" >
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file9') }}">Download MC csv</a>
+  </p>
+{{ df_view_boardmeetings.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+<div id="BSBM" class="w3-container action"  style="display: none;" >
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file10') }}">Download BS csv</a>
+  </p>
+{{ df_view_boardmeetings2.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+</div>
+
+
+
+<div id="AGMEGMBookClosure" class="w3-container city w3-animate-left" >
+<div class="w3-bar w3-black w3-center" style="position: fixed;width: 87%">
+<button class="w3-bar-item w3-button w3-left" onclick="openAction('MCaeb')" >Moneycontrol</button>
+<button class="w3-bar-item w3-button w3-right" onclick="openAction('BSaeb')" >BusinessStandard</button>
+</div>
+<br>
+<br>
+<div class="w3-bar w3-black w3-center" style="position: fixed; width: 87%;margin-top: -7px;">
+  <p class = "w3-left"><span style="color:white">  Corporate Actions Of</span> <b>{{ myCompany }}</b></p>
+  </div>
+  <br>
+<br>
+<div id="MCaeb" class="w3-container action" >
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file11') }}">Download MC csv</a>
+  </p>
+{{ df_view_aeb.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+<div id="BSaeb" class="w3-container action"  style="display: none;">
+  <p class= "w3-right">
+    <a href="{{ url_for('.download_file12') }}">Download BS csv</a>
+  </p>
+{{ df_view_aeb2.to_html(classes="table striped",na_rep="-",index=False) | safe}}
+</div>
+</div>
+
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+function openLink(evt, animName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(animName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+
+
+function openAction(actionName) {
+  var i;
+  var x = document.getElementsByClassName("action");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(actionName).style.display = "block";  
+}
+
+
+</script>
+
+</body>
+</html>
+{% endblock %}
