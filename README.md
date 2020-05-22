@@ -9,5 +9,5 @@ the stock prices of the target companies based on the Corporate Action. As we kn
 Corporate Actions have a significant impact on the stock prices of the companies, making the
 stock price as a dependent variable for the Corporate Actions enabling Jarvis to perform
 predictive actions based on the user requirements to deliver prominent results.
-1.Run Requirements.txt
-2.Run app.py
+#1.Run Requirements.txt
+#2.Run app.py
