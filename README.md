@@ -1,4 +1,4 @@
-# jarvis
+# JARVIS
 JARVIS : The Data Mining Robot is a virtual robot built for scraping the Corporate
 Action data which is available on the web. Though this data is available free of cost on the
 web there are some data venders who charge high because it's difficult to find the right data
